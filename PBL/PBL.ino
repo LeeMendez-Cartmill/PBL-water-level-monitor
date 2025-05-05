@@ -4,7 +4,7 @@
 #define WATER_SENSOR_PIN A0 
 void Water_Level(){
   int H2OValue = analogRead(A0);
-  int outputValue = (H2OValue)/1023;
+  int outputValue = (H2OValue)/1023*100;
 }
 void setup() {
   //begin the serial print

@@ -37,7 +37,7 @@ void LEDStateByWater(int outputValue) {
 //-----------The function to convert our Waterlevel value into a percentage-----------//
 int Water_Level() {
   int H2OValue = analogRead(A0);
-  int outputValue = (H2OValue) / 1023;
+  int outputValue = (H2OValue) / 1023*100;
   return outputValue;
 }
 void setup() {

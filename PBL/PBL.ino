@@ -9,23 +9,23 @@
 #define bluePin 11
 //--------------------------The Function to control the LED--------------------------//
 void LEDStateByWater(int outputValue) {
-  if (outputValue >= 80) {// if the water level is equal to or greater than 80% the LED will be red to indicate that the water level is at a criticaly high level and that imediate action is needed
+  if (outputValue >= 818) {// if the water level is equal to or greater than 80% the LED will be red to indicate that the water level is at a criticaly high level and that imediate action is needed
     analogWrite(redPin, 255);
     analogWrite(greenPin, 0);
     analogWrite(bluePin, 0);
-  } else if (outputValue < 80 && outputValue >= 60) {// If the water level is less than 80% but equal to or greater than 60% the LED will be orange to indicate that the water level is high
+  } else if (outputValue < 818 && outputValue >= 614) {// If the water level is less than 80% but equal to or greater than 60% the LED will be orange to indicate that the water level is high
     analogWrite(redPin, 255);
     analogWrite(greenPin, 165);
     analogWrite(bluePin, 0);
-  } else if (outputValue < 60 && outputValue >= 40) { // If the water level is less than 60% but greater than or equal to 40% the LED will be green to inicate that the water level is optimal.
+  } else if (outputValue < 614 && outputValue >= 409) { // If the water level is less than 60% but greater than or equal to 40% the LED will be green to inicate that the water level is optimal.
     analogWrite(redPin, 0);
     analogWrite(greenPin, 255);
     analogWrite(bluePin, 0);
-  } else if (outputValue < 40 && outputValue >= 20) { //If the water level is less than 40% and higher or equal to 20% the LED will be Safety Yellow to warn that the water level is Low
+  } else if (outputValue < 409 && outputValue >= 205) { //If the water level is less than 40% and higher or equal to 20% the LED will be Safety Yellow to warn that the water level is Low
     analogWrite(redPin, 238);
     analogWrite(bluePin, 210);
     analogWrite(greenPin, 2);
-  } else if (outputValue < 20) { // If the water level is less than 20% the LED will be purple to indicate that the water level is sriticaly low and more water is needed immediantely
+  } else if (outputValue < 205) { // If the water level is less than 20% the LED will be purple to indicate that the water level is sriticaly low and more water is needed immediantely
     analogWrite(redPin, 128);
     analogWrite(bluePin, 0);
     analogWrite(greenPin, 128);
@@ -35,12 +35,7 @@ void LEDStateByWater(int outputValue) {
     analogWrite(bluePin, 0);
   }
 }
-//-----------The function to convert our Waterlevel value into a percentage-----------//
-int Water_Level() {
-  int H2OValue = analogRead(A0);
-  int outputValue = (H2OValue) / 1023*100;
-  return outputValue;
-}
+
 void setup() {
   //begin the serial print
   Serial.begin(9600);
@@ -51,8 +46,13 @@ void setup() {
 }
 
 void loop() {
-  int outputValue;
-  outputValue = Water_Level();
-  LEDStateByWater(outputValue);
-  delay(1000);// checks the value every second by restarting the program
+   // Read the input on analog pin 0
+  int sensorValue = analogRead(WATER_SENSOR_PIN);
+
+  // Print out the value you read
+  Serial.print("Water Level: ");
+  Serial.println(sensorValue);
+
+  LEDStateByWater(sensorValue);
+  delay(500);// checks the value every second by restarting the program
 }

@@ -54,5 +54,5 @@ void loop() {
   Serial.println(sensorValue);
 
   LEDStateByWater(sensorValue);
-  delay(500);// checks the value every second by restarting the program
+  delay(1000);// checks the value every second by restarting the program
 }

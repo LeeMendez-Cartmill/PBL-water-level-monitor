@@ -47,12 +47,12 @@ void setup() {
 
 void loop() {
    // Read the input on analog pin 0
-  int sensorValue = analogRead(WATER_SENSOR_PIN);
+  int outputValue = analogRead(WATER_SENSOR_PIN);
 
   // Print out the value you read
   Serial.print("Water Level: ");
-  Serial.println(sensorValue);
+  Serial.println(outputValue);
 
-  LEDStateByWater(sensorValue);
+  LEDStateByWater(outputValue);
   delay(1000);// checks the value every second by restarting the program
 }

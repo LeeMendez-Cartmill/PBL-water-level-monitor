@@ -22,13 +22,13 @@ void LEDStateByWater(int sensorValue) {
     analogWrite(greenPin, 255);
     analogWrite(bluePin, 0);
   } else if (sensorValue < 132 && sensorValue >= 66) { //If the water level is less than 40% and higher or equal to 20% the LED will be Safety Yellow to warn that the water level is Low
-    analogWrite(redPin, 238);
-    analogWrite(bluePin, 210);
-    analogWrite(greenPin, 2);
-  } else if (sensorValue < 66) { // If the water level is less than 20% the LED will be purple to indicate that the water level is sriticaly low and more water is needed immediantely
     analogWrite(redPin, 128);
     analogWrite(bluePin, 0);
     analogWrite(greenPin, 128);
+  } else if (sensorValue < 66) { // If the water level is less than 20% the LED will be purple to indicate that the water level is sriticaly low and more water is needed immediantely
+    analogWrite(redPin, 255);
+    analogWrite(bluePin, 255);
+    analogWrite(greenPin, 0);
   } else { // If it is not working the LED should be off
     analogWrite(redPin, 0);
     analogWrite(greenPin, 0);
